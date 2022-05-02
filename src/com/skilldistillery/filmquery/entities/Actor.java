@@ -1,5 +1,7 @@
 package com.skilldistillery.filmquery.entities;
 
+import java.util.Objects;
+
 public class Actor {
 	private int actorId;
 	private String firstName;
@@ -41,7 +43,25 @@ public class Actor {
 
 	@Override
 	public String toString() {
-		return "Actor [actorId=" + actorId + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+		return "Actor: " + "ID:" + actorId + " " + firstName + " " + lastName;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(actorId, firstName, lastName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Actor other = (Actor) obj;
+		return actorId == other.actorId && Objects.equals(firstName, other.firstName)
+				&& Objects.equals(lastName, other.lastName);
 	}
 
 }
